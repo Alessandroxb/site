@@ -41,20 +41,61 @@ endereco.addEventListener("blur",function(){
 
 let email =  document.querySelector("#email")
 let confirmar = document.querySelector("#confirmar")
-let minusculo = email.value.to.LowerCase() 
 
 
 email.addEventListener("keyup", function(){
     confirmar.value = email.value
+    
+    let minusculo = email.value.toLowerCase() 
 
-    if(minusculo.IndexOf("@") == -1  || minusculo.IndexOf(".com") == -1){
+    if(minusculo.indexOf("@") == -1  || minusculo.indexOf(".com") == -1){
+        
+        console.log("Email inválido")
+        // email.style.border = "2px solid red" 
+        email.classList.add("border-danger")
+        email.classList.remove("border-success")
+    }
+
+    else{
+        console.log("Email válido")
+        // email.style.border = "2px solid green"
+        email.classList.add("border-success")
+        email.classList.remove("border-danger")
 
     }
 
-    else(){
+    console.log(email.value.indexOf("@"))
+})
 
+let senha = document.querySelector("#senha")
+let btn_olho = document.querySelector(".fa-eye")
+
+btn_olho.addEventListener("click", ()=>{
+    if(btn_olho.classList.contains("fa-eye")){
+        // console.log("A classe existe")
+        btn_olho.classList.remove("fa-eye")
+        btn_olho.classList.add("fa-eye-slash")
+
+        senha.setAttribute("type","text")
     }
 
-    consolo.log(email.value.IndexOf("@"))
+    else{
+        // console.log("A classe não existe")
+        btn_olho.classList.remove("fa-eye-slash")
+        btn_olho.classList.add("fa-eye")
+
+        senha.setAttribute("type","password")
+    }
+}) 
+
+// pegando dados do campo radio
+
+let escolaridade = document.querySelectorAll("input[name=escolaridade]")
+let btnEscolaridade = document.querySelector("#btnEscolaridade")
+
+btnEscolaridade.addEventListener("click",(e)=>{
+    console.log(e)
+    e.preventDefault() //Esta função irá impedir o comportamento padrão do botão
+    console.log(escolaridade)
 })
 
