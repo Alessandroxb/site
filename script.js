@@ -28,13 +28,16 @@ idade.addEventListener("blur", function(){
 let endereco = document.querySelector("input[Name=end]")
 endereco.addEventListener("blur",function(){
     console.log(endereco.value.length)
-    if(endereco.value.length >35){
-        alert("excede 35 letras")
-        endereco.style.border = "2px solid red"
-    }
-    else{
-        alert("seu endereço está ok")
-        endereco.style.border ="2px solid yellow"
+    if(endereco.value != ""){
+
+            if(endereco.value.length >35){
+                alert("excede 35 letras")
+                endereco.style.border = "2px solid red"
+            }
+            else{
+                alert("seu endereço está ok")
+                endereco.style.border ="2px solid yellow"
+            }
     }
     
 })
@@ -71,21 +74,26 @@ let senha = document.querySelector("#senha")
 let btn_olho = document.querySelector(".fa-eye")
 
 btn_olho.addEventListener("click", ()=>{
-    if(btn_olho.classList.contains("fa-eye")){
-        // console.log("A classe existe")
-        btn_olho.classList.remove("fa-eye")
-        btn_olho.classList.add("fa-eye-slash")
 
-        senha.setAttribute("type","text")
-    }
+    btn_olho.classList.contains("fa-eye")
+    ?btn_olho.classList.replace("fa-eye","fa-eye-slash", (senha.setAttribute("type","text")))
+    :btn_olho.classList.replace("fa-eye-slash","fa-eye", (senha.setAttribute("type","password")))
 
-    else{
-        // console.log("A classe não existe")
-        btn_olho.classList.remove("fa-eye-slash")
-        btn_olho.classList.add("fa-eye")
+    // if(btn_olho.classList.contains("fa-eye")){
+    //     // console.log("A classe existe")
+    //     btn_olho.classList.remove("fa-eye")
+    //     btn_olho.classList.add("fa-eye-slash")
 
-        senha.setAttribute("type","password")
-    }
+    //     senha.setAttribute("type","text")
+    // }
+
+    // else{
+    //     // console.log("A classe não existe")
+    //     btn_olho.classList.remove("fa-eye-slash")
+    //     btn_olho.classList.add("fa-eye")
+
+    //     senha.setAttribute("type","password")
+    // }
 }) 
 
 // pegando dados do campo radio
@@ -153,4 +161,38 @@ trabalho.addEventListener("change",()=>{
             }
         }
     }
+})
+
+let cor = document.querySelector("#cor")
+cor.addEventListener("change",()=>{
+    console.log(cor.value)
+    document.body.style.backgroundColor = cor.value
+})
+
+let mensagem = document.querySelector("#mensagem")
+let restante = document.querySelector("#restante")
+
+let limite = 20
+
+mensagem.addEventListener("keyup", ()=>{
+    
+    // console.log(mensagem.value.length)
+    restante.textContent = mensagem.value.length
+
+    mensagem.setAttribute("maxlength",limite)
+
+    console.log(restante)
+
+    if(restante.textContent == 20){
+        mensagem.classList.add("border-danger")
+        restante.parentNode.style.color = "red" //tag que pega os papaizes pra pegar os filhos é child
+    }
+
+    else{
+        mensagem.classList.remove("border-danger")
+
+    }
+
+
+
 })
