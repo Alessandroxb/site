@@ -94,8 +94,63 @@ let escolaridade = document.querySelectorAll("input[name=escolaridade]")
 let btnEscolaridade = document.querySelector("#btnEscolaridade")
 
 btnEscolaridade.addEventListener("click",(e)=>{
-    console.log(e)
+    // console.log(e)
     e.preventDefault() //Esta função irá impedir o comportamento padrão do botão
-    console.log(escolaridade)
+    // console.log(escolaridade)
+    for(let itens of escolaridade){
+        // console.log(itens)
+        if(itens.checked){
+            alert(`Sua escolaridade é ${itens.value}`) // isto é um template string, outra forma de concatenar.
+            // alert("Sua escolaridade é "+itens.value)
+            // confirm("Tem certeza?")
+        }
+    }
 })
 
+let escolha = document.querySelector("#escolha")
+let contrato = document.querySelector("#contrato")
+
+escolha.addEventListener("change",()=>{
+    if(escolha.checked){
+        contrato.classList.remove("d-none")
+        contrato.classList.add("d-block")
+    }
+
+    else{
+        contrato.classList.remove("d-block")
+        contrato.classList.add("d-none")
+    }
+})
+
+let concordo = document.querySelector("#concordo")
+concordo.addEventListener("change", ()=>{
+    if(concordo.checked){
+        alert("Boa decisão! Felizes ficamos com sua confiança!")
+    }
+
+    else{
+        alert("É uma ideia só...Ta de sacangem??? Mudando de ideia...")
+        let mensagem = prompt("Diga porque você desmarcou")
+    }
+
+})
+
+let trabalho = document.querySelector(".form-select")
+
+trabalho.addEventListener("change",()=>{
+    // console.log(trabalho.options)
+    for(let itens of trabalho){
+        if(itens.selected){
+            // console.log(itens.value)
+            if(itens.value == "RH"){
+                trabalho.style.backgroundColor = "cyan"
+            }
+            if(itens.value == "Tecnologia"){
+                trabalho.style.backgroundColor = "yellow"
+            }
+            if(itens.value == "Financeiro"){
+                trabalho.style.backgroundColor = "red"
+            }
+        }
+    }
+})
